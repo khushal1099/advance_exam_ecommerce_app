@@ -10,6 +10,7 @@ String productModelToJson(List<ProductModel> data) => json.encode(List<dynamic>.
 
 class ProductModel {
   int? id;
+  int? quantity;
   String? title;
   double? price;
   String? description;
@@ -20,6 +21,7 @@ class ProductModel {
   ProductModel({
     this.id,
     this.title,
+    this.quantity,
     this.price,
     this.description,
     this.category,
@@ -32,8 +34,9 @@ class ProductModel {
     title: json["title"],
     price: json["price"]?.toDouble(),
     description: json["description"],
-    category: categoryValues.map[json["category"]]!,
+    category: categoryValues.map[json["category"]],
     image: json["image"],
+    quantity: json["quantity"],
     rating: json["rating"] == null ? null : Rating.fromJson(json["rating"]),
   );
 
@@ -44,6 +47,7 @@ class ProductModel {
     "description": description,
     "category": categoryValues.reverse[category],
     "image": image,
+    "quantity": quantity,
     "rating": rating?.toJson(),
   };
 }
